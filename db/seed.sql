@@ -1,0 +1,1 @@
+-- TODO (database teammate): safe sample venues, events, shows, seats, and users.

@@ -1,0 +1,1 @@
+-- TODO (database teammate): seat hold, booking confirmation, cancellation, and hold-expiry procedures.

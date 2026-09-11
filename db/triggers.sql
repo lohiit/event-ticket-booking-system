@@ -1,0 +1,1 @@
+-- TODO (database teammate): auditing and booking/payment consistency triggers.
