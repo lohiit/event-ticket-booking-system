@@ -137,11 +137,14 @@ CREATE TABLE payments (
     currency CHAR(3) NOT NULL DEFAULT 'INR',
     payment_status ENUM('pending', 'succeeded', 'failed', 'refunded') NOT NULL DEFAULT 'pending',
     payment_provider VARCHAR(80) NULL,
+    provider_order_id VARCHAR(160) NULL,
     provider_reference VARCHAR(160) NULL,
+    signature_verified_at DATETIME NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (payment_id),
     KEY idx_payments_booking (booking_id, created_at),
+    UNIQUE KEY uq_payment_provider_order (payment_provider, provider_order_id),
     UNIQUE KEY uq_payment_provider_reference (payment_provider, provider_reference),
     CONSTRAINT fk_payments_booking FOREIGN KEY (booking_id) REFERENCES bookings (booking_id)
         ON UPDATE CASCADE ON DELETE RESTRICT

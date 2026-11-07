@@ -15,7 +15,11 @@ For the PHP application, create a dedicated local MySQL account. Choose your own
     GRANT SELECT, INSERT, UPDATE, DELETE, EXECUTE
     ON event_ticket_booking.* TO 'event_app'@'127.0.0.1';
 
-Use event_app and that same password in your ignored local .env file. Keep root for database administration.
+Use event_app and that same password in your ignored local .env file. For Razorpay, add Test Mode keys to the local .env only; never commit the key secret. Keep root for database administration.
+
+For an existing database, apply db/migrations/001_razorpay_payment_refs.sql once, then rerun procedures.sql to install the payment-aware confirmation procedure. Do not rerun schema.sql, triggers.sql, or seed.sql.
+
+The PHP server must create the Razorpay order and verify the returned signature and captured amount before calling sp_confirm_booking.
 
 Booking writes must go through the procedures in procedures.sql. The triggers in triggers.sql create show-seat inventory and record seat status changes. Procedures serialize updates per show. The application can read tables directly using parameterized PDO queries. See docs/database-contract.md for names and assumptions.
 

@@ -115,19 +115,27 @@ END$$
 
 CREATE PROCEDURE sp_confirm_booking(
     IN p_user_id BIGINT UNSIGNED,
-    IN p_show_id BIGINT UNSIGNED
+    IN p_show_id BIGINT UNSIGNED,
+    IN p_provider_order_id VARCHAR(160),
+    IN p_provider_payment_id VARCHAR(160)
 )
 BEGIN
     DECLARE v_show_status VARCHAR(20) DEFAULT NULL;
     DECLARE v_booking_id BIGINT UNSIGNED;
     DECLARE v_count INT DEFAULT 0;
     DECLARE v_total DECIMAL(10,2) DEFAULT 0.00;
+    DECLARE v_payment_id BIGINT UNSIGNED;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         SET @etbs_actor_user_id = NULL;
         ROLLBACK;
         RESIGNAL;
     END;
+
+    IF p_provider_order_id IS NULL OR p_provider_order_id = ''
+       OR p_provider_payment_id IS NULL OR p_provider_payment_id = '' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Verified Razorpay order and payment IDs are required';
+    END IF;
 
     START TRANSACTION;
     SELECT status INTO v_show_status FROM shows
@@ -152,6 +160,13 @@ BEGIN
     INSERT INTO bookings (user_id, show_id, status, total_amount)
       VALUES (p_user_id, p_show_id, 'confirmed', v_total);
     SET v_booking_id = LAST_INSERT_ID();
+    INSERT INTO payments
+        (booking_id, amount, currency, payment_status, payment_provider,
+         provider_order_id, provider_reference, signature_verified_at)
+      VALUES
+        (v_booking_id, v_total, 'INR', 'succeeded', 'razorpay',
+         p_provider_order_id, p_provider_payment_id, UTC_TIMESTAMP());
+    SET v_payment_id = LAST_INSERT_ID();
     INSERT INTO booking_seats (booking_id, show_seat_id, unit_price)
       SELECT v_booking_id, ss.show_seat_id, ss.price
       FROM seat_holds h JOIN show_seats ss ON ss.show_seat_id = h.show_seat_id
@@ -170,7 +185,8 @@ BEGIN
         AND h.hold_status = 'active' AND h.expires_at > UTC_TIMESTAMP();
     SET @etbs_actor_user_id = NULL;
     COMMIT;
-    SELECT v_booking_id AS booking_id, v_total AS total_amount, 'INR' AS currency;
+    SELECT v_booking_id AS booking_id, v_payment_id AS payment_id,
+           v_total AS total_amount, 'INR' AS currency;
 END$$
 
 CREATE PROCEDURE sp_cancel_booking(
