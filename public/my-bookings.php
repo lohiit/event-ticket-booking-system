@@ -55,7 +55,7 @@ require_once __DIR__ . '/../app/includes/header.php';
                 <article class="event-card"><div class="event-card-content">
                     <span class="event-category"><?= e($booking['status']) ?></span>
                     <h2><?= e($booking['title']) ?></h2>
-                    <p class="event-meta"><?= e($booking['venue_name']) ?> · <?= e(date('d M Y, g:i A', strtotime($booking['starts_at'] . ' UTC'))) ?></p>
+                    <p class="event-meta"><?= e($booking['venue_name']) ?> · <?= e(formatIstDateTime($booking['starts_at'], 'd M Y, g:i A')) ?></p>
                     <p class="event-description">Seats: <?= e($booking['seat_labels'] ?: '—') ?><br>Payment: <?= e((string) ($booking['payment_status'] ?? 'pending')) ?></p>
                     <div class="event-card-footer"><span class="event-price">₹<?= e(number_format((float) $booking['total_amount'], 2)) ?></span><a href="/booking-success.php?booking_id=<?= (int) $booking['booking_id'] ?>" class="btn">View Receipt</a></div>
                 </div></article>

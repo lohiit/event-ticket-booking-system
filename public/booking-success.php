@@ -50,11 +50,11 @@ require_once __DIR__ . '/../app/includes/header.php';
         <div class="section-heading">
             <p class="eyebrow">BOOKING CONFIRMED</p>
             <h1><?= e($booking['title']) ?></h1>
-            <p>Booking #<?= (int) $booking['booking_id'] ?> · <?= e(date('d M Y, g:i A', strtotime($booking['created_at'] . ' UTC'))) ?></p>
+            <p>Booking #<?= (int) $booking['booking_id'] ?> · <?= e(formatIstDateTime($booking['created_at'], 'd M Y, g:i A')) ?></p>
         </div>
         <div class="checkout-summary">
             <h2>Event details</h2>
-            <p><?= e($booking['venue_name']) ?> · <?= e(date('l, d M Y · g:i A', strtotime($booking['starts_at'] . ' UTC'))) ?></p>
+            <p><?= e($booking['venue_name']) ?> · <?= e(formatIstDateTime($booking['starts_at'], 'l, d M Y · g:i A')) ?></p>
             <p class="checkout-total"><span>Paid</span><strong>₹<?= e(number_format((float) $booking['total_amount'], 2)) ?> INR</strong></p>
             <p>Payment status: <?= e((string) ($booking['payment_status'] ?? 'pending')) ?></p>
             <?php if (!empty($booking['provider_reference'])): ?><p>Payment ID: <?= e($booking['provider_reference']) ?></p><?php endif; ?>

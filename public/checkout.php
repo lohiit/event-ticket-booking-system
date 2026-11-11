@@ -93,7 +93,7 @@ require_once __DIR__ . '/../app/includes/header.php';
         <div class="section-heading">
             <p class="eyebrow">CHECKOUT</p>
             <h1><?= e($show['title']) ?></h1>
-            <p><?= e($show['venue_name']) ?> · <?= e(date('l, d M Y · g:i A', strtotime($show['starts_at'] . ' UTC'))) ?></p>
+            <p><?= e($show['venue_name']) ?> · <?= e(formatIstDateTime($show['starts_at'], 'l, d M Y · g:i A')) ?></p>
         </div>
         <div class="checkout-summary">
             <h2>Your seats</h2>
@@ -106,7 +106,7 @@ require_once __DIR__ . '/../app/includes/header.php';
                 <?php endforeach; ?>
             </ul>
             <p class="checkout-total"><span>Total</span><strong>₹<?= e(number_format($total, 2)) ?></strong></p>
-            <p class="form-message">Your seats are held until <?= e(date('g:i A', strtotime($show['expires_at'] . ' UTC'))) ?>. Payment setup is the next step.</p>
+            <p class="form-message">Your seats are held until <?= e(formatIstDateTime($show['expires_at'], 'g:i A')) ?>. Payment setup is the next step.</p>
             <a href="/seats.php?show_id=<?= (int) $showId ?>" class="btn">Change Seats</a>
             <?php if ($paymentConfigured): ?>
                 <button

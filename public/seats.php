@@ -87,7 +87,7 @@ require_once __DIR__ . '/../app/includes/header.php';
         <div class="section-heading">
             <p class="eyebrow">CHOOSE YOUR SEATS</p>
             <h1><?= e($show['title']) ?></h1>
-            <p><?= e($show['venue_name']) ?> · <?= e(date('l, d M Y · g:i A', strtotime($show['starts_at'] . ' UTC'))) ?></p>
+            <p><?= e($show['venue_name']) ?> · <?= e(formatIstDateTime($show['starts_at'], 'l, d M Y · g:i A')) ?></p>
         </div>
 
         <div id="seat-selector" class="seat-selector" data-show-id="<?= (int) $show['show_id'] ?>" data-csrf="<?= e(csrfToken()) ?>">

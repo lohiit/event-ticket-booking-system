@@ -90,7 +90,7 @@ require_once __DIR__ . '/../app/includes/header.php';
                     <div class="event-card-content">
                         <span class="event-category"><?= e($event['category']) ?></span>
                         <h2><?= e($event['title']) ?></h2>
-                        <p class="event-meta"><?= e($event['venue_name']) ?> · <?= e(date('d M Y, g:i A', strtotime($event['starts_at'] . ' UTC'))) ?></p>
+                        <p class="event-meta"><?= e($event['venue_name']) ?> · <?= e(formatIstDateTime($event['starts_at'], 'd M Y, g:i A')) ?></p>
                         <p class="event-description"><?= e($event['description']) ?></p>
                         <div class="event-card-footer">
                             <span class="event-price">From ₹<?= e(number_format((float) $event['ticket_price'], 2)) ?></span>

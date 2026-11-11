@@ -6,6 +6,12 @@ function e(?string $value): string
     return htmlspecialchars($value ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+function formatIstDateTime(string $utcDateTime, string $format): string
+{
+    $utc = new DateTimeImmutable($utcDateTime, new DateTimeZone('UTC'));
+    return $utc->setTimezone(new DateTimeZone('Asia/Kolkata'))->format($format) . ' IST';
+}
+
 function eventArtwork(string $title): array
 {
     $artwork = [

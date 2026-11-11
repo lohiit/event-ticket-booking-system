@@ -74,7 +74,7 @@ require_once __DIR__ . '/../app/includes/header.php';
                 <?php foreach ($shows as $show): ?>
                     <article class="event-card">
                         <div class="event-card-content">
-                            <h3><?= e(date('l, d M Y · g:i A', strtotime($show['starts_at'] . ' UTC'))) ?></h3>
+                            <h3><?= e(formatIstDateTime($show['starts_at'], 'l, d M Y · g:i A')) ?></h3>
                             <p class="event-meta"><?= e($show['venue_name']) ?><?= $show['venue_address'] ? ' · ' . e($show['venue_address']) : '' ?></p>
                             <p class="event-description">
                                 Ticket price: ₹<?= e(number_format((float) $show['ticket_price'], 2)) ?><br>
