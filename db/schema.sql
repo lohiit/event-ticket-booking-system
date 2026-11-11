@@ -41,6 +41,7 @@ CREATE TABLE events (
     event_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(200) NOT NULL,
     description TEXT NULL,
+    image_path VARCHAR(255) NULL,
     category VARCHAR(80) NULL,
     status ENUM('draft', 'published', 'cancelled') NOT NULL DEFAULT 'draft',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

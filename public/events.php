@@ -16,7 +16,7 @@ try {
     $categories = $pdo->query("SELECT DISTINCT category FROM events WHERE status = 'published' AND category IS NOT NULL AND category <> '' ORDER BY category")
         ->fetchAll(PDO::FETCH_COLUMN);
 
-    $sql = "SELECT e.event_id, e.title, e.description, e.category, s.show_id, s.starts_at,
+    $sql = "SELECT e.event_id, e.title, e.description, e.category, e.image_path, s.show_id, s.starts_at,
                    s.ticket_price, v.name AS venue_name
             FROM events e
             JOIN shows s ON s.event_id = e.event_id
@@ -84,7 +84,7 @@ require_once __DIR__ . '/../app/includes/header.php';
             </div>
         <?php else: ?>
             <?php foreach ($events as $event): ?>
-                <?php [$artworkPath, $artworkAlt] = eventArtwork((string) $event['title']); ?>
+                <?php [$artworkPath, $artworkAlt] = eventArtwork((string) $event['title'], $event['image_path'] ?? null); ?>
                 <article class="event-card">
                     <div class="event-card-image"><img src="<?= e($artworkPath) ?>" alt="<?= e($artworkAlt) ?>" loading="lazy"><span><?= e($event['category'] ?: 'EVENT') ?></span></div>
                     <div class="event-card-content">

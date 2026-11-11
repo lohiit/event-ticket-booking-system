@@ -12,7 +12,7 @@ $databaseUnavailable = false;
 if ($eventId !== false && $eventId !== null) {
     try {
         $pdo = db();
-        $statement = $pdo->prepare("SELECT event_id, title, description, category FROM events WHERE event_id = :event_id AND status = 'published'");
+        $statement = $pdo->prepare("SELECT event_id, title, description, category, image_path FROM events WHERE event_id = :event_id AND status = 'published'");
         $statement->execute(['event_id' => $eventId]);
         $event = $statement->fetch() ?: null;
 
@@ -55,7 +55,7 @@ require_once __DIR__ . '/../app/includes/header.php';
             <a href="/events.php" class="btn">Browse Events</a>
         </div>
     <?php else: ?>
-        <?php [$eventArtworkPath, $eventArtworkAlt] = eventArtwork((string) $event['title']); ?>
+        <?php [$eventArtworkPath, $eventArtworkAlt] = eventArtwork((string) $event['title'], $event['image_path'] ?? null); ?>
         <div class="event-detail-art"><img src="<?= e($eventArtworkPath) ?>" alt="<?= e($eventArtworkAlt) ?>"></div>
         <div class="section-heading">
             <p class="eyebrow"><?= e($event['category']) ?></p>

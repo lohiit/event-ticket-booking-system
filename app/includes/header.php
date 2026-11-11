@@ -16,7 +16,7 @@ $user = currentUser();
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
-<body>
+<body class="<?= e($bodyClass ?? '') ?>">
 
 <header class="site-header">
     <nav class="navbar">

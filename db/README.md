@@ -19,6 +19,8 @@ Use event_app and that same password in your ignored local .env file. For Razorp
 
 For an existing database, apply db/migrations/001_razorpay_payment_refs.sql once, then rerun procedures.sql to install the payment-aware confirmation procedure. Do not rerun schema.sql, triggers.sql, or seed.sql.
 
+For an existing database that predates event poster uploads, apply db/migrations/002_event_image_path.sql once. Fresh databases get this column from schema.sql.
+
 The PHP server must create the Razorpay order and verify the returned signature and captured amount before calling sp_confirm_booking.
 
 Booking writes must go through the procedures in procedures.sql. The triggers in triggers.sql create show-seat inventory and record seat status changes. Procedures serialize updates per show. The application can read tables directly using parameterized PDO queries. See docs/database-contract.md for names and assumptions.

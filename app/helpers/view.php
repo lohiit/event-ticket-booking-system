@@ -12,8 +12,11 @@ function formatIstDateTime(string $utcDateTime, string $format): string
     return $utc->setTimezone(new DateTimeZone('Asia/Kolkata'))->format($format) . ' IST';
 }
 
-function eventArtwork(string $title): array
+function eventArtwork(string $title, ?string $imagePath = null): array
 {
+    if ($imagePath !== null && preg_match('~^/uploads/events/[a-f0-9]{32}\.(?:jpg|png|webp)$~', $imagePath)) {
+        return [$imagePath, 'Event poster'];
+    }
     $artwork = [
         'city beats live' => ['/assets/images/city-beats-live.svg', 'Live music stage in violet and coral lights'],
         'satrang: classical fusion' => ['/assets/images/satrang-classical-fusion.svg', 'Classical dance and music inspired by Indian colors'],
