@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title">
+  <title id="title">City Beats Live concert artwork</title>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#171536"/><stop offset=".55" stop-color="#462367"/><stop offset="1" stop-color="#eb596e"/></linearGradient>
+    <linearGradient id="beam" x2="0" y2="1"><stop stop-color="#ffc674" stop-opacity=".85"/><stop offset="1" stop-color="#ff6699" stop-opacity="0"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#ffbd79" stop-opacity=".9"/><stop offset="1" stop-color="#ffbd79" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <circle cx="225" cy="125" r="180" fill="url(#glow)" opacity=".65"/><circle cx="994" cy="110" r="230" fill="url(#glow)" opacity=".55"/>
+  <path d="M180 0 500 480H340L110 0M1000 0 760 480h155L1110 0" fill="url(#beam)" opacity=".65"/>
+  <path d="M0 445q110-80 220 0t220 0 220 0 220 0 220 0 220 0v155H0z" fill="#17132f" opacity=".82"/>
+  <path d="M0 505q95-45 190 0t190 0 190 0 190 0 190 0 190 0 190 0v95H0z" fill="#100f24"/>
+  <g fill="#17132f"><path d="M198 514q-15-48 5-76 9 26 7 48 14-42 42-52-5 39-26 66 26-32 57-31-15 39-53 58z"/><path d="M355 531q-9-42 9-68 9 23 7 43 13-33 38-43-4 31-24 53 23-25 50-23-13 31-48 47z"/><path d="M827 531q-9-42 9-68 9 23 7 43 13-33 38-43-4 31-24 53 23-25 50-23-13 31-48 47z"/><path d="M1015 515q-12-50 8-81 12 28 8 51 17-40 45-47-7 37-29 63 27-29 58-23-18 36-57 51z"/></g>
+  <g fill="#ffd279"><circle cx="128" cy="213" r="5"/><circle cx="302" cy="284" r="4"/><circle cx="447" cy="115" r="5"/><circle cx="777" cy="183" r="5"/><circle cx="890" cy="295" r="4"/><circle cx="1090" cy="228" r="5"/></g>
+  <g fill="none" stroke="#ffd279" stroke-linecap="round" stroke-width="8" opacity=".8"><path d="M442 340v-35m0 12 15-15m-15 29-14-12"/><path d="M761 286v-30m0 11 13-13m-13 26-13-11"/><path d="M581 180v-27m0 11 12-12m-12 24-12-10"/></g>
+  <rect x="550" y="370" width="100" height="115" rx="14" fill="#ff776f" opacity=".75"/><path d="M600 370v-82m0 0-43-28m43 28 43-28" stroke="#ffca78" stroke-width="8" stroke-linecap="round"/>
+</svg>

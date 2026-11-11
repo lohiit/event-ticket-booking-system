@@ -53,4 +53,4 @@ Use Test Mode only for this college demo; test transactions are simulated and do
 
 ## Still to confirm
 
-INR, 5-minute holds, and booking cancellation are confirmed. Cancellation frees seats but does not refund. Agree on refund policy, payment-failure handling, exact event/show fields, and admin account creation. Never store card numbers or security codes.
+INR, 5-minute holds, and booking cancellation are confirmed. Cancellation frees seats but does not refund. Agree on a refund policy and payment-failure handling before exposing cancellation in the admin interface. Never store card numbers or security codes. Admin access is granted through the CLI-only `tools/make-admin.php` script.

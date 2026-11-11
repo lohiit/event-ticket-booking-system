@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title">
+  <title id="title">Satrang classical fusion artwork</title>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#092c3c"/><stop offset=".58" stop-color="#155a65"/><stop offset="1" stop-color="#d07845"/></linearGradient>
+    <radialGradient id="sun"><stop stop-color="#ffd78c"/><stop offset=".58" stop-color="#ef9b5d"/><stop offset="1" stop-color="#e57757" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/><circle cx="875" cy="260" r="240" fill="url(#sun)" opacity=".9"/>
+  <g transform="translate(875 260)" fill="none" stroke="#ffe5b5" opacity=".7">
+    <circle r="166" stroke-width="2"/><circle r="137" stroke-width="2"/><circle r="106" stroke-width="2"/>
+    <path d="M0-185 19-62 92-160 44-48 160-92 62-19 185 0 62 19 160 92 44 48 92 160 19 62 0 185-19 62-92 160-44 48-160 92-62 19-185 0-62-19-160-92-44-48-92-160-19-62z" stroke-width="4"/>
+    <circle r="26" fill="#ffe5b5" stroke="none"/>
+  </g>
+  <path d="M0 492q150-90 300 0t300 0 300 0 300 0v108H0z" fill="#0c2e39" opacity=".68"/>
+  <g fill="#142e39" stroke="#f5c27e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="469" cy="232" r="27" stroke="none"/>
+    <path d="M460 269q-45 27-48 83l-13 77q-5 23 18 30 20 5 31-15l24-52 44 59q14 19 34 7 18-10 5-32l-54-93 3-46q24 27 59 25l34-2" fill="none"/>
+    <path d="m451 278-68-8m98 10 58-49m-96 84-63 47m108-30 57 32" fill="none"/>
+    <path d="M451 442q-32 22-54 60m120-50q40 20 68 55" fill="none"/>
+  </g>
+  <g fill="none" stroke-linecap="round"><path d="M197 143q-34 66 0 132t0 132" stroke="#8bd0be" stroke-width="8" opacity=".72"/><path d="M239 169q-25 51 0 102t0 102" stroke="#f2bc78" stroke-width="5" opacity=".8"/><path d="M1030 452q-25-48 0-96t0-96" stroke="#a0d4c8" stroke-width="6" opacity=".8"/></g>
+  <g fill="#ffe2a0"><circle cx="284" cy="114" r="6"/><circle cx="339" cy="171" r="4"/><circle cx="1082" cy="188" r="5"/><circle cx="1038" cy="136" r="4"/><circle cx="305" cy="396" r="5"/></g>
+</svg>
