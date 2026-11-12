@@ -1,22 +1,8 @@
 <?php
 declare(strict_types=1);
 
-function eventImageUploadsEnabled(): bool
-{
-    $setting = strtolower(trim((string) (getenv('EVENT_IMAGE_UPLOADS') ?: '')));
-    if ($setting === '') {
-        return getenv('VERCEL') !== '1';
-    }
-
-    return in_array($setting, ['1', 'true', 'yes', 'enabled'], true);
-}
-
 function saveEventImage(array $upload): string
 {
-    if (!eventImageUploadsEnabled()) {
-        throw new RuntimeException('Poster uploads are disabled on this hosted demo.');
-    }
-
     if (($upload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK
         || !isset($upload['tmp_name'], $upload['size'])
         || !is_uploaded_file($upload['tmp_name'])) {

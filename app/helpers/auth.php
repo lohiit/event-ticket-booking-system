@@ -17,25 +17,8 @@ function startAppSession(): void
         return;
     }
 
-    $sessionDriver = strtolower(trim((string) (getenv('SESSION_DRIVER') ?: 'file')));
-    if ($sessionDriver === 'database') {
-        require_once __DIR__ . '/database-session-handler.php';
-        session_set_save_handler(new DatabaseSessionHandler(), true);
-    } elseif ($sessionDriver !== 'file') {
-        throw new RuntimeException('SESSION_DRIVER must be "file" or "database".');
-    }
-
-    $secureSetting = getenv('SESSION_COOKIE_SECURE');
-    $secureOverride = $secureSetting === false || trim($secureSetting) === ''
-        ? null
-        : filter_var($secureSetting, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-    if ($secureSetting !== false && trim($secureSetting) !== '' && $secureOverride === null) {
-        throw new RuntimeException('SESSION_COOKIE_SECURE must be true or false.');
-    }
-    $isSecure = $secureOverride ?? (
-        (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== '' && $_SERVER['HTTPS'] !== 'off')
-        || strtolower((string) (getenv('APP_ENV') ?: 'local')) === 'production'
-    );
+    $isSecure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== '' && $_SERVER['HTTPS'] !== 'off')
+        || strtolower((string) (getenv('APP_ENV') ?: 'local')) === 'production';
     session_set_cookie_params([
         'lifetime' => 0,
         'path' => '/',
