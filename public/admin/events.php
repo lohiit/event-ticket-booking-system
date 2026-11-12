@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../app/helpers/validation.php';
 require_once __DIR__ . '/../../app/helpers/event-image.php';
 
 requireAdmin();
+$posterUploadsEnabled = eventImageUploadsEnabled();
 $pdo = db();
 $error = '';
 $formValues = ['title' => '', 'description' => '', 'category' => '', 'status' => 'draft'];
@@ -154,11 +155,19 @@ require_once __DIR__ . '/../../app/includes/header.php';
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4" maxlength="5000" placeholder="What should guests know about this event?"><?= e($formValues['description']) ?></textarea>
 
-            <label class="poster-label" for="event_image">Poster image <span>JPEG, PNG or WebP · up to 2 MB</span></label>
+            <?php [$previewPath, $previewAlt] = eventArtwork($formValues['title'], $editing['image_path'] ?? null); ?>
+            <label class="poster-label" for="event_image">Poster image <span><?= $posterUploadsEnabled ? 'JPEG, PNG or WebP · up to 2 MB' : 'Bundled artwork is used on this demo host' ?></span></label>
             <div class="poster-picker">
-                <?php [$previewPath, $previewAlt] = eventArtwork($formValues['title'], $editing['image_path'] ?? null); ?>
                 <img id="poster-preview" src="<?= e($previewPath) ?>" alt="<?= e($previewAlt) ?>">
-                <div><strong><?= $editing && !empty($editing['image_path']) ? 'Replace this poster' : 'Add a poster' ?></strong><p>Use a landscape image for the cleanest crop.</p><input id="event_image" name="event_image" type="file" accept="image/jpeg,image/png,image/webp"></div>
+                <div>
+                    <strong><?= $editing && !empty($editing['image_path']) ? 'Current poster' : 'Event artwork' ?></strong>
+                    <?php if ($posterUploadsEnabled): ?>
+                        <p>Use a landscape image for the cleanest crop.</p>
+                        <input id="event_image" name="event_image" type="file" accept="image/jpeg,image/png,image/webp">
+                    <?php else: ?>
+                        <p>Poster uploads are turned off for this hosted demo.</p>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <button class="btn admin-save" type="submit"><?= $editing ? 'Save changes' : 'Create event' ?><span aria-hidden="true">→</span></button>
@@ -179,9 +188,12 @@ require_once __DIR__ . '/../../app/includes/header.php';
     </div>
 </section>
 <script>
-document.getElementById('event_image').addEventListener('change', (event) => {
-    const file = event.target.files && event.target.files[0];
-    if (file) document.getElementById('poster-preview').src = URL.createObjectURL(file);
-});
+const eventImageInput = document.getElementById('event_image');
+if (eventImageInput) {
+    eventImageInput.addEventListener('change', (event) => {
+        const file = event.target.files && event.target.files[0];
+        if (file) document.getElementById('poster-preview').src = URL.createObjectURL(file);
+    });
+}
 </script>
 <?php require_once __DIR__ . '/../../app/includes/footer.php'; ?>

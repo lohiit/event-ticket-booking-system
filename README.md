@@ -15,4 +15,4 @@ A database-driven ticket-booking application built with PHP, MySQL, HTML, CSS, a
 Database work belongs primarily in `db/`. Web work belongs primarily in `public/` and `app/`.
 Before changing a database procedure or its inputs/outputs, update `docs/database-contract.md` so both teammates implement against the same interface.
 
-For local setup, admin access, and launch blockers, see [`docs/setup.md`](docs/setup.md) and [`docs/deployment-readiness.md`](docs/deployment-readiness.md). The application currently uses Razorpay Test Mode and is not configured for public production deployment.
+For local setup, admin access, and launch blockers, see [`docs/setup.md`](docs/setup.md) and [`docs/deployment-readiness.md`](docs/deployment-readiness.md). For a Vercel Test Mode demo, see [`docs/vercel-deployment.md`](docs/vercel-deployment.md). The application is not configured for real-money production use.

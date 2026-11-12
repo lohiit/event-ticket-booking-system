@@ -7,6 +7,8 @@ This is the first-pass implementation of the 11-table plan. It assumes MySQL 8.0
 3. triggers.sql
 4. seed.sql
 
+For multi-instance hosting, the PHP app can store sessions in MySQL. Fresh databases get the `app_sessions` table from `schema.sql`; for an existing database, apply `db/migrations/003_app_sessions.sql` once before setting `SESSION_DRIVER=database`.
+
 The scripts select the project database themselves. They are intended for a fresh database, not as migrations. Do not rerun schema.sql, triggers.sql, or seed.sql over existing data.
 
 For the PHP application, create a dedicated local MySQL account. Choose your own password and never commit it:
